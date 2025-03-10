@@ -1,3 +1,6 @@
+using milkify.Models;
+using Microsoft.EntityFrameworkCore;
+
 namespace milkify
 {
     public class Program
@@ -8,6 +11,10 @@ namespace milkify
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+
+            var provider = builder.Services.BuildServiceProvider();
+            var config = provider.GetService<IConfiguration>();
+            builder.Services.AddDbContext<UserDBContext>(item => item.UseNpgsql(config.GetConnectionString("DBcon")));
 
             var app = builder.Build();
 

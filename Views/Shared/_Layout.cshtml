@@ -48,8 +48,8 @@
 
     <script>
         function openNav() {
-          document.getElementById("mySidenav").style.width = "250px";
-          document.getElementById("main").style.marginLeft = "250px";
+          document.getElementById("mySidenav").style.width = "200px";
+          document.getElementById("main").style.marginLeft = "200px";
         }
 
         function closeNav() {
@@ -58,12 +58,18 @@
         }
     </script>
 
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
+    <div class="row">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-10">
+            <div class="container">
+                <main role="main" class="pb-3">
+                    @RenderBody()
+                </main>
+            </div>
+        </div>
+        <div class="col-sm-1"></div>
+    
     </div>
-
     <footer class="border-top footer text-muted">
         <div class="container">
             &copy; 2025 - milkify - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
