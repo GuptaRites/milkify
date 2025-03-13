@@ -8,7 +8,7 @@ namespace milkify.Models
         [Key]
         public int Id { get; set; }
 
-        [Column("User", TypeName ="char")]
+        [Column("User", TypeName = "char")]
         public string name { get; set; }
 
         [Column("EmailId", TypeName = "char")]
@@ -16,7 +16,7 @@ namespace milkify.Models
 
         [Column("Password", TypeName = "char")]
         public string password { get; set; }
-        
+
 
     }
 }

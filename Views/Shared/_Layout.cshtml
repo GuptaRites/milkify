@@ -35,15 +35,16 @@
         <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
         <a class="nav-link" asp-area="" asp-controller="Product" asp-action="Index">Products</a>
         <a class="nav-link" asp-area="" asp-controller="Collection" asp-action="Index">Collection</a>
-        <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Privacy">Supplier</a>
+        <a class="nav-link" asp-area="" asp-controller="Supplier" asp-action="Index">Supplier</a>
         <a class="nav-link " asp-area="" asp-controller="Home" asp-action="Privacy">Payments</a>
         <a class="nav-link " asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
     </div>
 
-    <div id="main">
+    <div id="main" class="d-flex justify-content-between">
         @* <h2>Sidenav Push Example</h2> *@
         @* <p>Click on the element below to open the side navigation menu, and push this content to the right.</p> *@
         <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Menu </span>
+        <partial name="_LoginPartial" />
     </div>
 
     <script>
@@ -67,7 +68,9 @@
                 </main>
             </div>
         </div>
-        <div class="col-sm-1"></div>
+        <div class="col-sm-1">
+            
+        </div>
     
     </div>
     <footer class="border-top footer text-muted">

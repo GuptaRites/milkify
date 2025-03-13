@@ -1,5 +1,8 @@
-using milkify.Models;
+//using milkify.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
+using milkify.Areas.Identity.Data;
+
 
 namespace milkify
 {
@@ -9,12 +12,23 @@ namespace milkify
         {
             var builder = WebApplication.CreateBuilder(args);
 
+            var connectionString = builder.Configuration.GetConnectionString("milkifyContextConnection")
+                ?? throw new InvalidOperationException("Connection string 'milkifyContextConnection' not found.");
+
             // Add services to the container.
             builder.Services.AddControllersWithViews();
 
-            var provider = builder.Services.BuildServiceProvider();
-            var config = provider.GetService<IConfiguration>();
-            builder.Services.AddDbContext<UserDBContext>(item => item.UseNpgsql(config.GetConnectionString("DBcon")));
+            //  Corrected DbContext registration
+            //builder.Services.AddDbContext<MilkifyContext>(options =>
+            //    options.UseSqlServer(connectionString));
+
+            builder.Services.AddDbContext<MilkifyContext>(options =>
+                options.UseSqlServer(builder.Configuration.GetConnectionString("milkifyContextConnection")));
+
+            //  Identity Configuration
+            builder.Services.AddDefaultIdentity<MilkifyUser>(options =>
+                options.SignIn.RequireConfirmedAccount = true)
+                .AddEntityFrameworkStores<MilkifyContext>();
 
             var app = builder.Build();
 
@@ -22,7 +36,6 @@ namespace milkify
             if (!app.Environment.IsDevelopment())
             {
                 app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
 
@@ -31,12 +44,14 @@ namespace milkify
 
             app.UseRouting();
 
+            app.UseAuthentication();  //  Ensure authentication is used before authorization
             app.UseAuthorization();
 
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
 
+            app.MapRazorPages();
             app.Run();
         }
     }
