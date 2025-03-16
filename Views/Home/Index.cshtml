@@ -1,6 +1,12 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+
+@if (!string.IsNullOrEmpty(ViewBag.UserName))
+{
+    <h2>Welcome, @ViewBag.UserName!</h2>
+}
+
 <div class="container mt-3">
     <ul class="nav justify-content-end">
         <li class="nav-item">

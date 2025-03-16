@@ -75,6 +75,15 @@ namespace milkify.Areas.Identity.Pages.Account
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
+            /// 
+            [Required]
+            //[EmailAddress]
+            [Display(Name = "Full Nmae")]
+            public string FullName { get; set; }
+
+            [Required]
+            public Gender Gender { get; set; }
+
             [Required]
             [EmailAddress]
             [Display(Name = "Email")]
@@ -98,6 +107,7 @@ namespace milkify.Areas.Identity.Pages.Account
             [Display(Name = "Confirm password")]
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
+
         }
 
 
@@ -115,7 +125,10 @@ namespace milkify.Areas.Identity.Pages.Account
             {
                 var user = CreateUser();
 
-                await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
+                user.FullName = Input.FullName;
+                user.Gender = Input.Gender;
+
+                await _userStore.SetUserNameAsync(user, Input.FullName, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
                 var result = await _userManager.CreateAsync(user, Input.Password);
 

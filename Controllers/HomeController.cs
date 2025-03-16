@@ -15,6 +15,8 @@ namespace milkify.Controllers
 
         public IActionResult Index()
         {
+            string userName = HttpContext.Session.GetString("UserName");
+            ViewBag.UserName = userName;
             return View();
         }
 

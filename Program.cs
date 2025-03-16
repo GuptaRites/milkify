@@ -27,8 +27,10 @@ namespace milkify
 
             //  Identity Configuration
             builder.Services.AddDefaultIdentity<MilkifyUser>(options =>
-                options.SignIn.RequireConfirmedAccount = true)
+                options.SignIn.RequireConfirmedAccount = false)
                 .AddEntityFrameworkStores<MilkifyContext>();
+
+            builder.Services.AddSession();
 
             var app = builder.Build();
 
@@ -38,6 +40,8 @@ namespace milkify
                 app.UseExceptionHandler("/Home/Error");
                 app.UseHsts();
             }
+
+            IApplicationBuilder Session = app.UseSession();
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
