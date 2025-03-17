@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using milkify.Areas.Identity.Data;
+using milkify.Models;
 
 
 namespace milkify
@@ -29,6 +30,9 @@ namespace milkify
             builder.Services.AddDefaultIdentity<MilkifyUser>(options =>
                 options.SignIn.RequireConfirmedAccount = false)
                 .AddEntityFrameworkStores<MilkifyContext>();
+
+            builder.Services.AddDbContext<UserDBContext>(options =>
+                   options.UseSqlServer(builder.Configuration.GetConnectionString("milkifyContextConnection")));
 
             builder.Services.AddSession();
 

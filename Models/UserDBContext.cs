@@ -4,11 +4,10 @@ namespace milkify.Models
 {
     public class UserDBContext : DbContext
     {
-        public UserDBContext(DbContextOptions options) : base(options)
+        public UserDBContext(DbContextOptions<UserDBContext> options) : base(options)
         {
-
         }
 
-        public DbSet<UserRegister> Users { get; set; }
+        public DbSet<Product> Products { get; set; }
     }
 }

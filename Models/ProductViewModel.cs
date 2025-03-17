@@ -3,24 +3,30 @@ using System.ComponentModel.DataAnnotations;
 
 namespace milkify.Models
 {
-    public class Product
+    public class ProductViewModel
     {
         [Key]
         public int Id { get; set; }
 
-        [Column("ImagePath", TypeName = "varchar(100)")]
-        public string ImagePath { get; set; } = null!;
-
-        [Column("Type", TypeName = "varchar(30)")]
+        [Required]
+        [Column("Type", TypeName = "char")]
         public string Type { get; set; } = null!;
 
-        [Column("Title", TypeName = "varchar(200)")]
+        [Required]
+        [Column("Title", TypeName = "char")]
         public string Title { get; set; } = null!;
 
+
+        [Required]
         [Column("Price", TypeName = "int")]
         public int Price { get; set; }
 
-        [Column("Desc", TypeName = "varchar(500)")]
+        [Required]
+        [Column("Desc", TypeName = "char")]
         public string Desc { get; set; } = null!;
+
+        [Required]
+        [Column("ImagePath", TypeName = "char")]
+        public IFormFile photo { get; set; } = null!;
     }
 }

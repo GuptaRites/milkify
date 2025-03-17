@@ -1,9 +1,65 @@
-﻿
+﻿@model IEnumerable<milkify.Models.Product>
+
 @{
     ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Products </h1>
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<p>@TempData["Succes"]</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ImagePath)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Type)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Desc)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ImagePath)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Type)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Desc)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+<h3>Products </h3>
 <div class="container mt-3">
     <ul class="nav justify-content-end">
         <li class="nav-item">
@@ -12,69 +68,61 @@
     </ul>
 </div>
 
-<div class="row">
-    <div class="col-6">
-        <div class="card" style="width:400px">
-            <img class="card-img-top" src="../bootstrap4/img_avatar1.png" alt="Card image" style="width:100%">
-            <div class="card-body">
-                <h4 class="card-title">John Doe</h4>
-                <p class="card-text">Some example text some example text. John Doe is an architect and engineer</p>
-                <a href="#" class="btn btn-primary">See Profile</a>
+<div class="container container_box">
+    <div class="row">
+        <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-12 col-xs-12 item_box">
+            <div class="card">
+                <img src="~/img/c4.jpg" alt="Alternate Text" class="card-img-top img-fluid" height="200" />
+                <div class="card-body">
+                    <h4 class="card-title">Hello bro</h4>
+                    <p class="card-text">hi! I am ritesh kumar Gupta And You</p>
+                    <div class="d-flex justify-content-between flex-lg-wrap">
+                        <p class="text-dark fs-5 fw-bold mb-0">₹ 50 / kg</p>
+                        <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary">
+                            <i class="fa fa-shopping-bag me-2 text-primary"></i> Buy Now
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="col-6">
-        <div class="card" style="width:400px">
-            <img class="card-img-top" src="../bootstrap4/img_avatar1.png" alt="Card image" style="width:100%">
-            <div class="card-body">
-                <h4 class="card-title">John Doe</h4>
-                <p class="card-text">Some example text some example text. John Doe is an architect and engineer</p>
-                <a href="#" class="btn btn-primary">See Profile</a>
+        @foreach (var item in Model)
+        {
+            <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-12 col-xs-12 item_box">
+                <div class="container mt-3">
+                    <ul class="nav justify-content-end">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16">
+                                    <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001m-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708z" />
+                                </svg>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                                    <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z" />
+                                </svg>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+              
+                <div class="card">
+                    <img src="@Url.Content("~/img/" + item.ImagePath)" alt="Product Image" class="card-img-top rounded-circle" height="250" />
+                    <div class="card-body">
+                        <h4 class="card-title">@item.Type</h4>
+                        <h5 class="card-title">@item.Title</h5>
+                        <p class="card-text">@item.Desc</p>
+                        <div class="d-flex justify-content-between flex-lg-wrap">
+                            <p class="text-dark fs-5 fw-bold mb-0">₹ @item.Price</p>
+                            <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary">
+                                <i class="fa fa-shopping-bag me-2 text-primary"></i> Buy Now
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-</div>
-<div class="row">
-    <div class="col-6">
-        <div class="card" style="width:400px">
-            <img class="card-img-top" src="../bootstrap4/img_avatar1.png" alt="Card image" style="width:100%">
-            <div class="card-body">
-                <h4 class="card-title">John Doe</h4>
-                <p class="card-text">Some example text some example text. John Doe is an architect and engineer</p>
-                <a href="#" class="btn btn-primary">See Profile</a>
-            </div>
-        </div>
-    </div>
-    <div class="col-6">
-        <div class="card" style="width:400px">
-            <img class="card-img-top" src="../bootstrap4/img_avatar1.png" alt="Card image" style="width:100%">
-            <div class="card-body">
-                <h4 class="card-title">John Doe</h4>
-                <p class="card-text">Some example text some example text. John Doe is an architect and engineer</p>
-                <a href="#" class="btn btn-primary">See Profile</a>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="row">
-    <div class="col-6">
-        <div class="card" style="width:400px">
-            <img class="card-img-top" src="../bootstrap4/img_avatar1.png" alt="Card image" style="width:100%">
-            <div class="card-body">
-                <h4 class="card-title">John Doe</h4>
-                <p class="card-text">Some example text some example text. John Doe is an architect and engineer</p>
-                <a href="#" class="btn btn-primary">See Profile</a>
-            </div>
-        </div>
-    </div>
-    <div class="col-6">
-        <div class="card" style="width:400px">
-            <img class="card-img-top" src="../bootstrap4/img_avatar1.png" alt="Card image" style="width:100%">
-            <div class="card-body">
-                <h4 class="card-title">John Doe</h4>
-                <p class="card-text">Some example text some example text. John Doe is an architect and engineer</p>
-                <a href="#" class="btn btn-primary">See Profile</a>
-            </div>
-        </div>
+        }
+
     </div>
 </div>

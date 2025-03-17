@@ -20,7 +20,7 @@ namespace milkify.Areas.Identity.Pages.Account
             _logger = logger;
         }
 
-        public async Task<IActionResult> OnPost(string returnUrl = null)
+        public async Task<IActionResult> OnPost(string? returnUrl = null)
         {
             // Sign out the user
             await _signInManager.SignOutAsync();
