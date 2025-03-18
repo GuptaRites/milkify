@@ -3,62 +3,105 @@
 }
 
 
-<div class="container mt-3">
-    <ul class="nav justify-content-end">
-        <li class="nav-item">
-            <a class="nav-link" asp-area="" asp-controller="User" asp-action="UserRegistration">Sign Up</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" asp-area="" asp-controller="User" asp-action="UserLogin">Login</a>
-        </li>
-    </ul>
+@{
+    ViewData["Title"] = "Milkify - Home";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Hero Section -->
+<div class="container-fluid bg-light text-dark py-5 text-center">
+    <h1 class="display-4 fw-bold">Welcome to <span class="text-primary">Milkify</span></h1>
+    <p class="lead">A smart and efficient dairy management system</p>
+    <a asp-Action="About" class="btn btn-primary btn-lg mt-3">Learn More</a>
 </div>
 
-    @* <h2>Automatic Slideshow</h2> *@
-    @* <p>Change image every 2 seconds:</p> *@
-
-    <div class="slideshow-container">
-
-        <div class="mySlides fade">
-            <img src="img/p4.jfif" style="width:100%; height:200px;">
+<!-- Features Section -->
+<div class="container my-5">
+    <h2 class="text-center mb-4">Why Choose Milkify?</h2>
+    <div class="row text-center">
+        <div class="col-md-4">
+            <i class="fas fa-cow fa-3x text-primary"></i>
+            <h4 class="mt-3">Dairy Management</h4>
+            <p>Track milk collections, quality, and pricing with ease.</p>
         </div>
-
-        <div class="mySlides fade">
-        <img src="img/p5.jfif" style="width:100%; height:200px;">
-            
+        <div class="col-md-4">
+            <i class="fas fa-truck fa-3x text-success"></i>
+            <h4 class="mt-3">Supplier Tracking</h4>
+            <p>Manage farmers and suppliers with automated reports.</p>
         </div>
-
-        <div class="mySlides fade">
-        <img src="img/p6.jfif" style="width:100%; height:200px;">
+        <div class="col-md-4">
+            <i class="fas fa-chart-line fa-3x text-warning"></i>
+            <h4 class="mt-3">Analytics & Reports</h4>
+            <p>Get insights with real-time data visualization.</p>
         </div>
-
     </div>
-    <br>
+</div>
 
-    <div style="text-align:center">
-        <span class="dot"></span>
-        <span class="dot"></span>
-        <span class="dot"></span>
+<!-- Featured Products (Dairy Items) -->
+<div class="container my-5">
+    <h2 class="text-center mb-4">Our Dairy Products</h2>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card">
+                <img src="~/img/c3.jpg" class="card-img-top" alt="Milk">
+                <div class="card-body">
+                    <h5 class="card-title">Fresh Milk</h5>
+                    <p class="card-text">Pure & fresh dairy milk available.</p>
+                    <a href="#" class="btn btn-outline-primary">Buy Now</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <img src="~/img/c3.jpg" class="card-img-top" alt="Cheese">
+                <div class="card-body">
+                    <h5 class="card-title">Organic Cheese</h5>
+                    <p class="card-text">High-quality farm cheese, naturally made.</p>
+                    <a href="#" class="btn btn-outline-success">Buy Now</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <img src="~/img/c3.jpg" class="card-img-top" alt="Yogurt">
+                <div class="card-body">
+                    <h5 class="card-title">Fresh Yogurt</h5>
+                    <p class="card-text">Thick & creamy yogurt for a healthy diet.</p>
+                    <a href="#" class="btn btn-outline-warning">Buy Now</a>
+                </div>
+            </div>
+        </div>
     </div>
+</div>
 
-    <script>
-        let slideIndex = 0;
-        showSlides();
+<!-- Testimonials -->
+<div class="container my-5">
+    <h2 class="text-center mb-4">What Our Customers Say</h2>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="p-4 bg-light rounded shadow-sm">
+                <p>“Milkify has transformed our dairy farm. Managing milk collections is now seamless!”</p>
+                <h5 class="text-primary">- Ramesh Kumar</h5>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="p-4 bg-light rounded shadow-sm">
+                <p>“A fantastic platform for tracking dairy supply and maintaining quality.”</p>
+                <h5 class="text-success">- Anjali Sharma</h5>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="p-4 bg-light rounded shadow-sm">
+                <p>“Highly recommended for all dairy businesses looking for efficiency.”</p>
+                <h5 class="text-warning">- Rahul Verma</h5>
+            </div>
+        </div>
+    </div>
+</div>
 
-        function showSlides() {
-          let i;
-          let slides = document.getElementsByClassName("mySlides");
-          let dots = document.getElementsByClassName("dot");
-          for (i = 0; i < slides.length; i++) {
-            slides[i].style.display = "none";
-          }
-          slideIndex++;
-          if (slideIndex > slides.length) {slideIndex = 1}
-          for (i = 0; i < dots.length; i++) {
-            dots[i].className = dots[i].className.replace(" active", "");
-          }
-          slides[slideIndex-1].style.display = "block";
-          dots[slideIndex-1].className += " active";
-          setTimeout(showSlides, 2000); // Change image every 2 seconds
-        }
-    </script>
+<!-- Call to Action -->
+<div class="container-fluid bg-primary text-white text-center py-5">
+    <h2>Join the Future of Dairy Management</h2>
+    <p>Start using Milkify today and transform your dairy operations!</p>
+    <a asp-Action="About" class="btn btn-light btn-lg">Get Started</a>
+</div>

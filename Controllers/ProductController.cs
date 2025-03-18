@@ -17,10 +17,10 @@ namespace milkify.Controllers
         }
         public IActionResult Index()
         {
-            //if (HttpContext.Session.GetString("UserName") == null)
-            //{
-            //    return RedirectToAction("Index", "Home");
-            //}
+            if (HttpContext.Session.GetString("UserName") == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
             return View(db.Products.ToList());
         }
         public IActionResult AddProduct()

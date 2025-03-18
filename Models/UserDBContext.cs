@@ -9,5 +9,9 @@ namespace milkify.Models
         }
 
         public DbSet<Product> Products { get; set; }
+
+        public DbSet<MilkCollection> MilkCollections { get; set; }
+
+        public DbSet<Supplier> Suppliers { get; set; }
     }
 }
