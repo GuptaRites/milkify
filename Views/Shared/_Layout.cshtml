@@ -11,7 +11,7 @@
 <body>
     <header>
         <div class="row fixed-top" style="background-color:aqua">
-            <div class="col-sm-2">
+            <div class="col-sm-4">
                 <div id="mySidenav" class="sidenav">
                     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
                     <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
@@ -25,10 +25,10 @@
                     <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Menu </span>
                 </div>
             </div>
-            <div class="col-sm-8">
+            <div class="col-sm-5">
             
             </div>
-            <div class="col-sm-2">
+            <div class="col-sm-3">
                 <partial name="_LoginPartial" />
             </div>
         </div>
@@ -48,7 +48,7 @@
           document.getElementById("main").style.marginLeft= "0";
         }
     </script>
-    <div style="height:75px"></div>
+    <div style="height:90px"></div>
     <div class="row">
         <div class="col-sm-1">
 
