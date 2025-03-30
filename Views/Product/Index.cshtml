@@ -1,109 +1,60 @@
 ﻿@model IEnumerable<milkify.Models.Product>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Products";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h4>Products </h4>
-<hr />
-<div class="container mt-3">
-    <ul class="nav justify-content-end">
-        <li class="nav-item">
-            <a class="nav-link" asp-area="" asp-controller="Product" asp-action="AddProduct">Add Product</a>
-        </li>
-    </ul>
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2 class="text-primary">Product List</h2>
+        <a class="btn btn-primary" asp-action="AddProduct">
+            <i class="bi bi-plus-circle me-1"></i> Add Product
+        </a>
+    </div>
+
+    @if (TempData["Succes"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            @TempData["Succes"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+    <table class="table table-bordered table-hover align-middle text-center">
+        <thead class="table-light">
+            <tr>
+                <th>Image</th>
+                <th>@Html.DisplayNameFor(model => model.First().Type)</th>
+                @* <th>@Html.DisplayNameFor(model => model.First().Title)</th> *@
+                <th>@Html.DisplayNameFor(model => model.First().Price)</th>
+                
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        <img src="@Url.Content("~/img/" + item.ImagePath)" class="rounded shadow-sm" style="width: 100px; height: 100px; object-fit: cover;" />
+                    </td>
+                    <td>@item.Type</td>
+                    @* <td>@item.Title</td> *@
+                    <td>Rs. @item.Price.ToString("0.00")</td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-warning me-1">
+                            <i class="bi bi-pencil-square"></i> Edit
+                        </a>
+                        <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-info text-white me-1">
+                            <i class="bi bi-info-circle"></i> Details
+                        </a>
+                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger">
+                            <i class="bi bi-trash"></i> Delete
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
 </div>
-<p style="color:green">@TempData["Succes"]</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                Image
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Type)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Title)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Price)
-            </th>
-            <th>
-                Descirption
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                    <img src="@Url.Content("~/img/" + item.ImagePath)" alt="Product Image" class="rounded-circle" height="150" width="150" />
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Type)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Desc)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
-@* <div class="container container_box"> *@
-@*     <div class="row"> *@
-
-@*         @foreach (var item in Model) *@
-@*         { *@
-@*             <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-12 col-xs-12 item_box"> *@
-@*                 <div class="container mt-3"> *@
-@*                     <ul class="nav justify-content-end"> *@
-@*                         <li class="nav-item"> *@
-@*                             <a class="nav-link" asp-action="Edit" asp-route-id="@item.Id"> *@
-@*                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16"> *@
-@*                                     <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001m-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708z" /> *@
-@*                                 </svg> *@
-@*                             </a> *@
-@*                         </li> *@
-@*                         <li class="nav-item"> *@
-@*                             <a class="nav-link" asp-action="Edit" asp-route-id="@item.Id"> *@
-@*                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16"> *@
-@*                                     <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z" /> *@
-@*                                 </svg> *@
-@*                             </a> *@
-@*                         </li> *@
-@*                     </ul> *@
-@*                 </div> *@
-              
-@*                 <div class="card"> *@
-@*                     <img src="@Url.Content("~/img/" + item.ImagePath)" alt="Product Image" class="card-img-top rounded-circle" height="250" /> *@
-@*                     <div class="card-body"> *@
-@*                         <h4 class="card-title">@item.Type</h4> *@
-@*                         <h5 class="card-title">@item.Title</h5> *@
-@*                         <p class="card-text">@item.Desc</p> *@
-@*                         <div class="d-flex justify-content-between flex-lg-wrap"> *@
-@*                             <p class="text-dark fs-5 fw-bold mb-0">₹ @item.Price</p> *@
-@*                             <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"> *@
-@*                                 <i class="fa fa-shopping-bag me-2 text-primary"></i> Buy Now *@
-@*                             </a> *@
-@*                         </div> *@
-@*                     </div> *@
-@*                 </div> *@
-@*             </div> *@
-@*         } *@
-
-@*     </div> *@
-@* </div> *@
