@@ -1,0 +1,43 @@
+﻿@model milkify.Models.MilkCollection
+
+@{
+    ViewData["Title"] = "Collection Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-sm">
+                <div class="card-header text-center bg-primary text-white">
+                    <h4>Milk Collection Details</h4>
+                </div>
+                <div class="card-body">
+                    <dl class="row">
+                        <dt class="col-sm-4">Farmer Name</dt>
+                        <dd class="col-sm-8">@Html.DisplayFor(model => model.FarmerName)</dd>
+
+                        <dt class="col-sm-4">Collection Date</dt>
+                        <dd class="col-sm-8">@Html.DisplayFor(model => model.CollectionDate)</dd>
+
+                        <dt class="col-sm-4">Quantity (Liters)</dt>
+                        <dd class="col-sm-8">@Html.DisplayFor(model => model.Quantity)</dd>
+
+                        <dt class="col-sm-4">Rate per Liter</dt>
+                        <dd class="col-sm-8">@Html.DisplayFor(model => model.RatePerLiter)</dd>
+
+                        <dt class="col-sm-4">Milk Type</dt>
+                        <dd class="col-sm-8">@Html.DisplayFor(model => model.MilkType)</dd>
+
+                        <dt class="col-sm-4">Status</dt>
+                        <dd class="col-sm-8">@Html.DisplayFor(model => model.Status)</dd>
+                    </dl>
+                </div>
+                <div class="card-footer text-center">
+                    <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-warning me-2">Edit</a>
+                    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -58,5 +58,67 @@ namespace milkify.Controllers
             }
             return View();
         }
+        // View Details
+        public IActionResult Details(int id)
+        {
+            var collection = db.MilkCollections.Find(id);
+            if (collection == null)
+            {
+                return NotFound();
+            }
+            return View(collection);
+        }
+
+        // Edit GET
+        public IActionResult Edit(int id)
+        {
+            var collection = db.MilkCollections.Find(id);
+            if (collection == null)
+            {
+                return NotFound();
+            }
+            return View(collection);
+        }
+
+        // Edit POST
+        [HttpPost]
+        public IActionResult Edit(MilkCollection collection)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(collection);
+            }
+            db.MilkCollections.Update(collection);
+            db.SaveChanges();
+            TempData["Success"] = "Collection updated.";
+            return RedirectToAction("Index");
+        }
+
+        // Delete GET
+        public IActionResult Delete(int id)
+        {
+            var collection = db.MilkCollections.Find(id);
+            if (collection == null)
+            {
+                return NotFound();
+            }
+            return View(collection);
+        }
+
+        // Delete POST
+        [HttpPost, ActionName("Delete")]
+        public IActionResult DeleteConfirmed(int id)
+        {
+            var collection = db.MilkCollections.Find(id);
+            if (collection == null)
+            {
+                return NotFound();
+            }
+            db.MilkCollections.Remove(collection);
+            db.SaveChanges();
+            TempData["Success"] = "Collection deleted.";
+            return RedirectToAction("Index");
+        }
+
     }
 }

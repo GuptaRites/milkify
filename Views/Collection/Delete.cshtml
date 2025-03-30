@@ -1,0 +1,48 @@
+﻿@model milkify.Models.MilkCollection
+
+@{
+    ViewData["Title"] = "Delete Collection";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow">
+                <div class="card-body">
+                    <h3 class="text-danger text-center mb-4">Are you sure you want to delete this collection?</h3>
+                    <h5 class="text-center text-muted mb-4">Milk Collection Details</h5>
+                    <hr />
+
+                    <dl class="row">
+                        <dt class="col-sm-4">Farmer Name</dt>
+                        <dd class="col-sm-8">@Html.DisplayFor(model => model.FarmerName)</dd>
+
+                        <dt class="col-sm-4">Collection Date</dt>
+                        <dd class="col-sm-8">@Html.DisplayFor(model => model.CollectionDate)</dd>
+
+                        <dt class="col-sm-4">Quantity (L)</dt>
+                        <dd class="col-sm-8">@Html.DisplayFor(model => model.Quantity)</dd>
+
+                        <dt class="col-sm-4">Rate Per Liter</dt>
+                        <dd class="col-sm-8">@Html.DisplayFor(model => model.RatePerLiter)</dd>
+
+                        <dt class="col-sm-4">Milk Type</dt>
+                        <dd class="col-sm-8">@Html.DisplayFor(model => model.MilkType)</dd>
+
+                        <dt class="col-sm-4">Status</dt>
+                        <dd class="col-sm-8">@Html.DisplayFor(model => model.Status)</dd>
+                    </dl>
+
+                    <form asp-action="Delete">
+                        <input type="hidden" asp-for="Id" />
+                        <div class="text-center mt-4">
+                            <input type="submit" value="Confirm Delete" class="btn btn-danger px-4" />
+                            <a asp-action="Index" class="btn btn-secondary px-4 ms-3">Cancel</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

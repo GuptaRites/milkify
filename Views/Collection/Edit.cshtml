@@ -1,80 +1,66 @@
 ﻿@model milkify.Models.MilkCollection
 
 @{
-    ViewData["Title"] = "Add Collection";
+    ViewData["Title"] = "Edit Collection";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<h4 class="text-center">Add Milk Collection</h4>
-<hr />
 
 <div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-md-6">
-            <div class="card shadow-lg">
+            <div class="card shadow">
                 <div class="card-body">
-                    <h5 class="card-title text-center mb-3">
-                        <img src="~/img/c3.jpg" class="rounded-circle" width="50" height="50" alt="Logo"><br />
-                        <span>Milkify</span>
-                    </h5>
-                    <form asp-action="AddCollection">
+                    <h4 class="card-title text-center mb-4 text-primary">Edit Milk Collection</h4>
+                    <form asp-action="Edit">
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <input type="hidden" asp-for="Id" />
 
                         <div class="form-group mb-3">
-                            <label asp-for="FarmerName" class="control-label"></label>
+                            <label asp-for="FarmerName" class="form-label"></label>
                             <input asp-for="FarmerName" class="form-control" />
                             <span asp-validation-for="FarmerName" class="text-danger"></span>
                         </div>
 
                         <div class="form-group mb-3">
-                            <label asp-for="CollectionDate" class="control-label"></label>
-                            <input asp-for="CollectionDate" type="date" class="form-control" />
+                            <label asp-for="CollectionDate" class="form-label"></label>
+                            <input asp-for="CollectionDate" class="form-control" type="date" />
                             <span asp-validation-for="CollectionDate" class="text-danger"></span>
                         </div>
 
                         <div class="form-group mb-3">
-                            <label asp-for="Quantity" class="control-label"></label>
+                            <label asp-for="Quantity" class="form-label"></label>
                             <input asp-for="Quantity" class="form-control" />
                             <span asp-validation-for="Quantity" class="text-danger"></span>
                         </div>
 
                         <div class="form-group mb-3">
-                            <label asp-for="RatePerLiter" class="control-label"></label>
+                            <label asp-for="RatePerLiter" class="form-label"></label>
                             <input asp-for="RatePerLiter" class="form-control" />
                             <span asp-validation-for="RatePerLiter" class="text-danger"></span>
                         </div>
 
                         <div class="form-group mb-3">
-                            <label asp-for="MilkType" class="control-label"></label>
-                            <select asp-for="MilkType" class="form-control">
-                                <option value="">-- Select Milk Type --</option>
-                                <option value="Cow">Cow</option>
-                                <option value="Buffalo">Buffalo</option>
-                                <option value="Goat">Goat</option>
-                            </select>
+                            <label asp-for="MilkType" class="form-label"></label>
+                            <input asp-for="MilkType" class="form-control" />
                             <span asp-validation-for="MilkType" class="text-danger"></span>
                         </div>
 
                         <div class="form-group mb-4">
-                            <label asp-for="Status" class="control-label"></label>
+                            <label asp-for="Status" class="form-label"></label>
                             <select asp-for="Status" class="form-control">
-                                <option value="">-- Select Status --</option>
-                                <option value="Approved">Approved</option>
                                 <option value="Pending">Pending</option>
+                                <option value="Approved">Approved</option>
                                 <option value="Rejected">Rejected</option>
                             </select>
                             <span asp-validation-for="Status" class="text-danger"></span>
                         </div>
 
-                        <div class="form-group text-center">
-                            <input type="submit" value="Create" class="btn btn-primary px-4" />
+                        <div class="text-center">
+                            <input type="submit" value="Save Changes" class="btn btn-success px-4" />
+                            <a asp-action="Index" class="btn btn-secondary ms-3 px-4">Cancel</a>
                         </div>
                     </form>
                 </div>
-            </div>
-
-            <div class="text-center mt-3">
-                <a asp-action="Index" class="btn btn-secondary">Back to List</a>
             </div>
         </div>
     </div>
