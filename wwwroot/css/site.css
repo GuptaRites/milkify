@@ -34,7 +34,7 @@ body {
     z-index: 1;
     top: 0;
     left: 0;
-    background-color: #BAABBD;
+    background-color: white;
     overflow-x: hidden;
     transition: 0.5s;
     padding-top: 60px;
@@ -44,7 +44,7 @@ body {
         padding: 8px 8px 8px 32px;
         text-decoration: none;
         font-size: 25px;
-        color: forestgreen;
+        color: black;
         display: block;
         transition: 0.3s;
     }
